@@ -1,0 +1,20 @@
+CREATE USER 'sec_user'@'localhost' IDENTIFIED BY 'Password123!';
+GRANT SELECT, INSERT, UPDATE ON `group-project-aid`.* TO 'sec_user'@'localhost';
+
+CREATE TABLE `group-project-aid`.`Users` (
+    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `username` VARCHAR(30) NOT NULL,
+    `email` VARCHAR(50) NOT NULL,
+    `password` CHAR(128) NOT NULL,
+    `salt` CHAR(128) NOT NULL,
+    `created_on` timestamp default current_timestamp,
+    `last_sign_in`timestamp,
+    `is_ta` INT NOT NULL default 0,
+	`is_prof` INT NOT NULL default 0,
+	`is_student` INT NOT NULL default 0
+) ENGINE = InnoDB;
+
+
+INSERT INTO `group-project-aid`.`Users` VALUES(1, 'test_user', 'test@example.com',
+'00807432eae173f652f2064bdca1b61b290b52d40e429a7d295d76a71084aa96c0233b82f1feac45529e0726559645acaed6f3ae58a286b9f075916ebf66cacc',
+'f9aab579fc1b41ed0c44fe4ecdbfcdb4cb99b9023abb241a6db833288f4eea3c02f76e0d35204a8695077dcf81932aa59006423976224be0390395bae152d4ef', NOW(), NOW(), 0, 0, 1);
