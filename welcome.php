@@ -14,6 +14,16 @@ sec_session_start();
     <body>
         <?php if (login_check($mysqli) == true) : ?>
             <p>Welcome <?php echo htmlentities($_SESSION['username']); ?>!</p>
+            
+            <?php if ($noteStmt = $mysqli->prepare("SELECT note 
+                                      FROM notes")) {
+                                      $noteStmt->execute();
+                                      $noteStmt->store_result();
+                                      
+                                      echo "Number of notes: ";
+                                      echo $noteStmt->num_rows;
+                                      }
+                                      ?>
             <p>
                 This is an example protected page.  To access this page, users
                 must be logged in.  At some stage, we'll also check the role of
