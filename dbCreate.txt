@@ -14,6 +14,17 @@ CREATE TABLE `group-project-aid`.`Users` (
 	`is_student` INT NOT NULL default 0
 ) ENGINE = InnoDB;
 
+CREATE TABLE `group-project-aid`.`Notes` (
+	`id` INT NOT NULL auto_increment PRIMARY KEY,
+    `note` varchar(255) not null, 
+    `reply_to` INT default null,
+    `group_id` INT not null,
+    `user_id` INT not null,
+    `created_on` timestamp default current_timestamp
+) ENGINE = InnoDB;
+
+
+INSERT INTO `group-project-aid`.`notes` VALUES(1, 'Hello, this a test note', DEFAULT, 1, 1, DEFAULT);
 
 INSERT INTO `group-project-aid`.`Users` VALUES(1, 'test_user', 'test@example.com',
 '00807432eae173f652f2064bdca1b61b290b52d40e429a7d295d76a71084aa96c0233b82f1feac45529e0726559645acaed6f3ae58a286b9f075916ebf66cacc',
