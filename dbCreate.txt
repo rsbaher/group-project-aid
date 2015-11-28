@@ -1,3 +1,11 @@
+drop table notes;
+drop table meetings;
+drop table uploads;
+drop table groups;
+drop table users;
+
+CREATE SCHEMA `group-project-aid`;
+
 CREATE USER 'sec_user'@'localhost' IDENTIFIED BY 'Password123!';
 GRANT SELECT, INSERT, UPDATE ON `group-project-aid`.* TO 'sec_user'@'localhost';
 
@@ -68,9 +76,3 @@ INSERT INTO `group-project-aid`.`Uploads` VALUES(1,"Test_file","www.google.com",
 INSERT INTO `group-project-aid`.`notes` VALUES(1, 'Hello, this a test note', DEFAULT, 1, 1, DEFAULT);
 
 INSERT INTO `group-project-aid`.`meetings` VALUES(NOW(), 1, 1, 1);
-
-drop table notes;
-drop table meetings;
-drop table uploads;
-drop table groups;
-drop table users;
