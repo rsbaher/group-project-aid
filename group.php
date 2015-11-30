@@ -25,26 +25,21 @@ sec_session_start();
             
             $query = "SELECT link_user_group.user_id, link_user_group.group_id, groups.id
             FROM link_user_group
-            JOIN groups ON link_user_group.group_id=groups.id 
+            JOIN groups ON link_user_group.group_id=" .  $ID[1] . " 
             WHERE link_user_group.user_id = " . $_SESSION["user_id"];
             $groups = $mysqli->query($query);
             
             if ($groups->num_rows > 0) {
-                while ($row = $groups->fetch_assoc()) {
-                    if ($row["group_id"] == $ID[1]) {
-                        $query = "SELECT group_name from groups where " . $urlID;
-                        $group = $mysqli->query($query);
-                    
-                        if ($group->num_rows > 0) {
-                            $row = $group->fetch_assoc();
-                            echo $row["group_name"];
-                        } else {
-                            echo "Group not found"; 
-                        }
+                $row = $groups->fetch_assoc(); 
+                if ($row["group_id"] == $ID[1]) {
+                    $query = "SELECT group_name from groups where " . $urlID;
+                    $group = $mysqli->query($query);
+                
+                    $row = $group->fetch_assoc();
+                    echo "This is the group page for " . $row["group_name"];
+                }
             } else {
-            echo "You are not authorized to access this page.";
-            }
-            }
+                echo '<p class="error">You are not authorized to access this page.</p>';
             }?></p>
                
         
