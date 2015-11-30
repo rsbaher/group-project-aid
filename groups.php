@@ -21,16 +21,16 @@ sec_session_start();
             <p class="groups"><?php 
             
             $query = "SELECT link_user_group.user_id, link_user_group.group_id, groups.id, groups.group_name FROM link_user_group
-            JOIN groups ON  link_user_group.group_id=groups.id 
+            JOIN groups ON link_user_group.group_id=groups.id 
             WHERE link_user_group.user_id = " . $_SESSION["user_id"];
             $groups = $mysqli->query($query);
             
             if ($groups->num_rows > 0) {
                 while ($row = $groups->fetch_assoc()) {
-                    echo $row["group_name"] . "<br><br>";
+                    echo '<a href=group.php?id=', urlencode($row["group_id"]), '>'.$row["group_name"].'</a><br><br>';
                 }
             } else {
-                echo "No results"; 
+                echo "No groups"; 
             }?></p>
         
         
