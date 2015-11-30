@@ -13,8 +13,12 @@ sec_session_start();
     </head>
     <body>
         <?php if (login_check($mysqli) == true) : ?>
-            <p class="login">Logged in as: <?php echo htmlentities($_SESSION['username']);?> | <a href="includes/logout.php">Log out</a></p>
-            
+        <ul>
+           
+            <li><a href="welcome.php">Home</a></li>
+            <li><a href="groups.php">Groups</a></li>
+            <li>Logged in as: <?php echo htmlentities($_SESSION['username']);?> | <a href="includes/logout.php">Log out</a></li>
+        </ul>
             <p class="notes"><?php 
             
             $query = "SELECT id, note, user_id FROM notes WHERE user_id = " . $_SESSION["user_id"];
