@@ -21,20 +21,32 @@ sec_session_start();
             <p class="groups"><?php
             $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";            
             $urlID = parse_url($url, PHP_URL_QUERY);
+            $ID = explode("=", $urlID);
             
-            $query = "SELECT group_name from groups where " . $urlID;
+            $query = "SELECT link_user_group.user_id, link_user_group.group_id, groups.id
+            FROM link_user_group
+            JOIN groups ON link_user_group.group_id=groups.id 
+            WHERE link_user_group.user_id = " . $_SESSION["user_id"];
             $groups = $mysqli->query($query);
             
             if ($groups->num_rows > 0) {
                 while ($row = $groups->fetch_assoc()) {
-                    echo $row["group_name"];
-                }
+                    if ($row["group_id"] == $ID[1]) {
+                        $query = "SELECT group_name from groups where " . $urlID;
+                        $group = $mysqli->query($query);
+                    
+                        if ($group->num_rows > 0) {
+                            $row = $group->fetch_assoc();
+                            echo $row["group_name"];
+                        } else {
+                            echo "Group not found"; 
+                        }
             } else {
-                echo "Group not found"; 
+            echo "You are not authorized to access this page.";
+            }
+            }
             }?></p>
-        
-        
-        
+               
         
         <?php else : ?>
             <p>
