@@ -1,8 +1,10 @@
 drop table notes;
 drop table meetings;
 drop table uploads;
+drop table link_user_group;
 drop table groups;
 drop table users;
+
 
 CREATE SCHEMA `group-project-aid`;
 
@@ -80,7 +82,7 @@ INSERT INTO `group-project-aid`.`Groups` VALUES(1, default,'CPSC471',1, 1);
 
 INSERT INTO `group-project-aid`.`Uploads` VALUES(1,"Test_file","www.google.com",1,1,null,NOW());
 
-INSERT INTO `group-project-aid`.`notes` VALUES(4, 'Rayce also wrote this note', DEFAULT, 1, 2, DEFAULT);
+INSERT INTO `group-project-aid`.`notes` VALUES(1, 'Test note', DEFAULT, 1, 2, DEFAULT);
 
 INSERT INTO `group-project-aid`.`meetings` VALUES(NOW(), 1, 1, 1);
 
