@@ -9,27 +9,24 @@ sec_session_start();
     <head>
         <meta charset="UTF-8">
         <title>Secure Login: Protected Page</title>
-        <link rel="stylesheet" href="styles/main.css" />
+        <link rel="stylesheet" href="styles/welcome.css" />
     </head>
     <body>
         <?php if (login_check($mysqli) == true) : ?>
-            <p>Welcome <?php echo htmlentities($_SESSION['username']); ?>!</p>
+            <p class="login">Logged in as: <?php echo htmlentities($_SESSION['username']);?> | <a href="includes/logout.php">Log out</a></p>
             
-            <?php if ($noteStmt = $mysqli->prepare("SELECT note 
-                                      FROM notes")) {
-                                      $noteStmt->execute();
-                                      $noteStmt->store_result();
-                                      
-                                      echo "Number of notes: ";
-                                      echo $noteStmt->num_rows;
-                                      }
-                                      ?>
-            <p>
-                This is an example protected page.  To access this page, users
-                must be logged in.  At some stage, we'll also check the role of
-                the user, so pages will be able to determine the type of user
-                authorised to access the page.
-            </p>
+            <p class="notes"><?php 
+            
+            $query = "SELECT id, note, user_id FROM notes WHERE user_id = " . $_SESSION["user_id"];
+            $notes = $mysqli->query($query);
+            
+            if ($notes->num_rows > 0) {
+                while ($row = $notes->fetch_assoc()) {
+                    echo $_SESSION["username"] . "<br>" . $row["note"] . "<br><br>";
+                }
+            } else {
+                echo "No results"; 
+            }?></p>
             <p>Return to <a href="index.php">login page</a></p>
         <?php else : ?>
             <p>
