@@ -65,6 +65,13 @@ CREATE TABLE `group-project-aid`.`meetings`(
     FOREIGN KEY(group_id) REFERENCES GROUPS(id)
 ) ENGINE = InnoDB;
 
+CREATE TABLE `group-project-aid`.`link_user_group` (
+	`user_id` int not null,
+    `group_id` int not null,
+    FOREIGN KEY (user_id) REFERENCES USERS(id),
+    FOREIGN KEY (group_id) REFERENCES GROUPS(id)
+) ENGINE = InnoDB;
+
 INSERT INTO `group-project-aid`.`Users` VALUES(1, 'test_user', 'test@example.com',
 '00807432eae173f652f2064bdca1b61b290b52d40e429a7d295d76a71084aa96c0233b82f1feac45529e0726559645acaed6f3ae58a286b9f075916ebf66cacc',
 'f9aab579fc1b41ed0c44fe4ecdbfcdb4cb99b9023abb241a6db833288f4eea3c02f76e0d35204a8695077dcf81932aa59006423976224be0390395bae152d4ef', NOW(), NOW(), 0, 0, 1);
@@ -73,6 +80,8 @@ INSERT INTO `group-project-aid`.`Groups` VALUES(1, default,'CPSC471',1, 1);
 
 INSERT INTO `group-project-aid`.`Uploads` VALUES(1,"Test_file","www.google.com",1,1,null,NOW());
 
-INSERT INTO `group-project-aid`.`notes` VALUES(1, 'Hello, this a test note', DEFAULT, 1, 1, DEFAULT);
+INSERT INTO `group-project-aid`.`notes` VALUES(4, 'Rayce also wrote this note', DEFAULT, 1, 2, DEFAULT);
 
 INSERT INTO `group-project-aid`.`meetings` VALUES(NOW(), 1, 1, 1);
+
+INSERT INTO `group-project-aid`.`link_user_group` VALUES(1,1);
