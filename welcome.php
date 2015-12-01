@@ -7,7 +7,9 @@ sec_session_start();
 <!DOCTYPE html>
 <html>
     <head>
+		<h1>Welcome to GPA</h1>
         <meta charset="UTF-8">
+		
         <title>Welcome</title>
         <link rel="stylesheet" href="styles/welcome.css" />
     </head>

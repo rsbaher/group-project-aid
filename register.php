@@ -46,6 +46,12 @@ include_once 'includes/functions.php';
             Confirm password: <input type="password" 
                                      name="confirmpwd" 
                                      id="confirmpwd" /><br>
+			I am a 
+			<select>
+				<option value="Professor">Professor</option>
+				<option value="TA">Teacher Assistant</option>
+				<option value="Student">Student</option>
+			</select>
             <input type="button" 
                    value="Register" 
                    onclick="return regformhash(this.form,
