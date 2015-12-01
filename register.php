@@ -47,7 +47,7 @@ include_once 'includes/functions.php';
                                      name="confirmpwd" 
                                      id="confirmpwd" /><br>
 			I am a 
-			<select>
+			<select name="user_type" >
 				<option value="Professor">Professor</option>
 				<option value="TA">Teacher Assistant</option>
 				<option value="Student">Student</option>
