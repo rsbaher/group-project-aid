@@ -7,7 +7,6 @@ sec_session_start();
 <!DOCTYPE html>
 <html>
     <head>
-		<h1>Welcome to GPA</h1>
         <meta charset="UTF-8">
 		
         <title>Welcome</title>
@@ -20,6 +19,7 @@ sec_session_start();
             <li><a href="groups.php">Groups</a></li>
             <li>Logged in as: <?php echo htmlentities($_SESSION['username']);?> | <a href="includes/logout.php">Log out</a></li>
         </ul>
+        		<h1>Welcome to GPA</h1>
             <p class="notes"><?php 
             
             $query = "SELECT id, note, user_id FROM notes WHERE user_id = " . $_SESSION["user_id"];
