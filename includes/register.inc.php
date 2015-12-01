@@ -78,11 +78,27 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
  
         // Create salted password 
         $password = hash('sha512', $password . $random_salt);
- 
-        // Insert the new user into the database 
-        if ($insert_stmt = $mysqli->prepare("INSERT INTO users (username, email, password, salt) VALUES (?, ?, ?, ?)")) {
-            $insert_stmt->bind_param('ssss', $username, $email, $password, $random_salt);
-            // Execute the prepared query.
+		
+		//Determine if user is proff TA or Student
+		$isP = 0;
+		$isS = 0;
+		$isT = 0;
+		if($user_type == "Professor"){
+			$isP =1;
+			echo "is Proff";
+		}
+		else if($user_type == "TA"){
+			$isT = 1;
+		}
+		else if($user_type == "Student"){
+			$isT = 1;
+		}
+        // Insert the new user into the database  
+        if ($insert_stmt = $mysqli->prepare("INSERT INTO users (username, email, password, salt, is_ta, is_prof, is_student) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
+           
+			//$insert_stmt->bind_param('ssss', $username, $email, $password, $random_salt);
+			$insert_stmt->bind_param('ssssiii', $username, $email, $password, $random_salt, $isT,$isP,$isS);
+			// Execute the prepared query.
             if (! $insert_stmt->execute()) {
                 header('Location: ../error.php?err=Registration failure: INSERT');
             }
