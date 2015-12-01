@@ -14,7 +14,7 @@ include_once 'includes/functions.php';
     <body>
         <!-- Registration form to be output if the POST variables are not
         set or if the registration script caused an error. -->
-        <h1>Register with us</h1>
+        <h1>Register with us!</h1>
         <?php
         if (!empty($error_msg)) {
             echo $error_msg;
@@ -58,7 +58,8 @@ include_once 'includes/functions.php';
                                    this.form.username,
                                    this.form.email,
                                    this.form.password,
-                                   this.form.confirmpwd);" /> 
+                                   this.form.confirmpwd
+								   this.form.user_type);" /> 
         </form>
         <p>Return to the <a href="index.php">login page</a>.</p>
     </body>
