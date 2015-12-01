@@ -20,7 +20,8 @@ function regformhash(form, uid, email, password, conf, type) {
     if (uid.value == ''         || 
           email.value == ''     || 
           password.value == ''  || 
-          conf.value == '') {
+          conf.value == ''      ||
+          type.value == '') {
  
         alert('You must provide all the requested details. Please try again');
         return false;
