@@ -1,10 +1,11 @@
+drop schema `group-project-aid`;
+
 drop table notes;
 drop table meetings;
 drop table uploads;
 drop table link_user_group;
 drop table groups;
 drop table users;
-
 
 CREATE SCHEMA `group-project-aid`;
 
@@ -19,9 +20,7 @@ CREATE TABLE `group-project-aid`.`Users` (
     `salt` CHAR(128) NOT NULL,
     `created_on` timestamp default current_timestamp,
     `last_sign_in`timestamp,
-    `is_ta` INT NOT NULL default 0,
-	`is_prof` INT NOT NULL default 0,
-	`is_student` INT NOT NULL default 0
+    `user_type` INT NOT NULL default 0
 ) ENGINE = InnoDB;
 
 CREATE TABLE `group-project-aid`.`Groups`(
@@ -76,13 +75,13 @@ CREATE TABLE `group-project-aid`.`link_user_group` (
 
 INSERT INTO `group-project-aid`.`Users` VALUES(1, 'test_user', 'test@example.com',
 '00807432eae173f652f2064bdca1b61b290b52d40e429a7d295d76a71084aa96c0233b82f1feac45529e0726559645acaed6f3ae58a286b9f075916ebf66cacc',
-'f9aab579fc1b41ed0c44fe4ecdbfcdb4cb99b9023abb241a6db833288f4eea3c02f76e0d35204a8695077dcf81932aa59006423976224be0390395bae152d4ef', NOW(), NOW(), 0, 0, 1);
+'f9aab579fc1b41ed0c44fe4ecdbfcdb4cb99b9023abb241a6db833288f4eea3c02f76e0d35204a8695077dcf81932aa59006423976224be0390395bae152d4ef', NOW(), NOW(), 0);
 
-INSERT INTO `group-project-aid`.`Groups` VALUES(1, default,'CPSC471',1, 1);
+INSERT INTO `group-project-aid`.`Groups` VALUES(1, default,'CPSC473',1, 1);
 
 INSERT INTO `group-project-aid`.`Uploads` VALUES(1,"Test_file","www.google.com",1,1,null,NOW());
 
-INSERT INTO `group-project-aid`.`notes` VALUES(1, 'Test note', DEFAULT, 1, 2, DEFAULT);
+INSERT INTO `group-project-aid`.`notes` VALUES(1, 'Test note', DEFAULT, 1, 1, DEFAULT);
 
 INSERT INTO `group-project-aid`.`meetings` VALUES(NOW(), 1, 1, 1);
 

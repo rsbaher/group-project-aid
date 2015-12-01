@@ -4,7 +4,7 @@ include_once 'psl-config.php';
  
 $error_msg = "";
  
-if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
+if (isset($_POST['username'], $_POST['email'], $_POST['p'], $_POST['usertype'])) {
     // Sanitize and validate the data passed in
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
@@ -13,7 +13,18 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
         // Not a valid email
         $error_msg .= '<p class="error">The email address you entered is not valid</p>';
     }
- 
+    // Get type of user
+        $userType = $_POST['usertype'];
+        var_dump($userType);
+        
+        if ($userType == 'Student') {
+            $userNum = 0;
+        } else if ($userType == 'Professor') {
+            $userNum = 1;
+        } else {
+            $userNum = 2;
+        }
+        
     $password = filter_input(INPUT_POST, 'p', FILTER_SANITIZE_STRING);
     if (strlen($password) != 128) {
         // The hashed pwd should be 128 characters long.
@@ -78,10 +89,12 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
  
         // Create salted password 
         $password = hash('sha512', $password . $random_salt);
+        
  
         // Insert the new user into the database 
-        if ($insert_stmt = $mysqli->prepare("INSERT INTO users (username, email, password, salt) VALUES (?, ?, ?, ?)")) {
-            $insert_stmt->bind_param('ssss', $username, $email, $password, $random_salt);
+
+        if ($insert_stmt = $mysqli->prepare("INSERT INTO users (username, email, password, salt, user_type) VALUES (?, ?, ?, ?, ?)")) {
+            $insert_stmt->bind_param('sssss', $username, $email, $password, $random_salt, $userNum);
             // Execute the prepared query.
             if (! $insert_stmt->execute()) {
                 header('Location: ../error.php?err=Registration failure: INSERT');

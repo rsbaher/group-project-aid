@@ -47,7 +47,7 @@ include_once 'includes/functions.php';
                                      name="confirmpwd" 
                                      id="confirmpwd" /><br>
 			I am a 
-			<select name="user_type" >
+			<select name='usertype' >
 				<option value="Professor">Professor</option>
 				<option value="TA">Teacher Assistant</option>
 				<option value="Student">Student</option>
@@ -58,8 +58,8 @@ include_once 'includes/functions.php';
                                    this.form.username,
                                    this.form.email,
                                    this.form.password,
-                                   this.form.confirmpwd
-								   this.form.user_type);" /> 
+                                   this.form.confirmpwd,
+								   this.form.usertype);" /> 
         </form>
         <p>Return to the <a href="index.php">login page</a>.</p>
     </body>
