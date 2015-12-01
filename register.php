@@ -14,7 +14,7 @@ include_once 'includes/functions.php';
     <body>
         <!-- Registration form to be output if the POST variables are not
         set or if the registration script caused an error. -->
-        <h1>Register with us</h1>
+        <h1>Register with us!</h1>
         <?php
         if (!empty($error_msg)) {
             echo $error_msg;
@@ -46,13 +46,20 @@ include_once 'includes/functions.php';
             Confirm password: <input type="password" 
                                      name="confirmpwd" 
                                      id="confirmpwd" /><br>
+			I am a 
+			<select name="user_type" >
+				<option value="Professor">Professor</option>
+				<option value="TA">Teacher Assistant</option>
+				<option value="Student">Student</option>
+			</select>
             <input type="button" 
                    value="Register" 
                    onclick="return regformhash(this.form,
                                    this.form.username,
                                    this.form.email,
                                    this.form.password,
-                                   this.form.confirmpwd);" /> 
+                                   this.form.confirmpwd
+								   this.form.user_type);" /> 
         </form>
         <p>Return to the <a href="index.php">login page</a>.</p>
     </body>
