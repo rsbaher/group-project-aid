@@ -9,6 +9,10 @@ ul {
     list-style-type:none
 }
 
+h1 {
+    margin-left: 20px;
+}
+
 li {
     display: inline;
     padding: 8px;

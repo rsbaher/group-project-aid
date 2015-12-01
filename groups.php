@@ -18,6 +18,7 @@ sec_session_start();
             <li><a href="groups.php">Groups</a></li>
             <li>Logged in as: <?php echo htmlentities($_SESSION['username']);?> | <a href="includes/logout.php">Log out</a></li>
         </ul>
+            <h1>Groups</h1>
             <p class="groups"><?php 
             
             $query = "SELECT link_user_group.user_id, link_user_group.group_id, groups.id, groups.group_name FROM link_user_group
