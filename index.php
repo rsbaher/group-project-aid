@@ -13,6 +13,7 @@ if (login_check($mysqli) == true) {
 <!DOCTYPE html>
 <html>
     <head>
+		<h1>Group Project Aid Login</h1>
         <title>Secure Login: Log In</title>
         <link rel="stylesheet" href="styles/main.css" />
         <script type="text/JavaScript" src="js/sha512.js"></script> 
